@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <main class="kanban">
+        <div class="container">
+            <section class="column">
+
+                <!-- Add column -->
+                <div class="column__add-column">
+                    <input class="dialog dialog_column" placeholder="Введите название колонки">
+                    <div class="buttons">
+                        <span class="button__icon"></span>
+                        <button class="button__open-dialog">
+                            Добавить еще одну колонку
+                        </button>
+                        <button class="button__add js-add-column">
+                            Добавить колонку
+                        </button>
+                    </div>
+                </div>
+                <!-- Add column -->
+
+                <!-- Column -->
+                <h4 class="column__title">План на месяц</h4>
+                <div class="cards">
+                    <div class="cards__item">
+                        <p class="cards__text">
+
+                        </p>
+                    </div>
+                </div>
+                <!-- Column -->
+
+                <!-- Add card -->
+                <div class="column__add-card">
+                    <textarea class="dialog dialog_card" placeholder="Введите название карточки"></textarea>
+                    <div class="buttons">
+                        <span class="button__icon"></span>
+                        <button class="button__open-add-dialog">
+                            Добавить еще одну карточку
+                        </button>
+                        <button class="button__add js-add-card">
+                            Добавить карточку
+                        </button>
+                    </div>
+                </div>
+                <!-- Add card -->
+            </section>
+        </div>
+    </main>
+
+
+    <script src="./script.js"></script>
+    
+</body>
+</html>
