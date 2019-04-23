@@ -20,6 +20,7 @@
     width: calc((100% - 36px) / 4);
     min-width: 280px;
     max-height: 100%;
+    min-height: 47px;
     margin: 0 6px;
     padding: 0;
     background-color: #DFE3E6;
@@ -53,13 +54,13 @@
     line-height: 19px;
 }
 
-.column__card-actions, .column__column-actions {
+.column__actions {
     padding: 10px 12px;
     background-color: inherit;
     cursor: pointer;
 }
 
-.column__card-actions {
+.column__actions_card {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -119,19 +120,19 @@
     white-space: nowrap;
 }
 
-.column__card-actions_open-dialog .dialog,
-.column__column-actions_open-dialog .dialog {
+.column__actions_open-dialog .dialog,
+.column__actions_open-dialog .dialog {
     display: block;
 }
 
-.column__card-actions_open-dialog .add-button,
-.column__column-actions_open-dialog .add-button {
+.column__actions_open-dialog .add-button,
+.column__actions_open-dialog .add-button {
     width: auto;
     padding: 4px 8px;
 }
 
-.column__card-actions_open-dialog .open-dialog-button,
-.column__column-actions_open-dialog .open-dialog-button {
+.column__actions_open-dialog .open-dialog-button,
+.column__actions_open-dialog .open-dialog-button {
     width: 0;
     padding: 0;
 }
@@ -144,8 +145,8 @@
     transition: all 2s ease-in-out;
 }
 
-.column__card-actions_open-dialog .buttons__icon,
-.column__column-actions_open-dialog .buttons__icon {
+.column__actions_open-dialog .buttons__icon,
+.column__actions_open-dialog .buttons__icon {
     transform: rotate(45deg);
     right: 0;
     left: auto;

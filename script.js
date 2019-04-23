@@ -1,5 +1,10 @@
 'use strict';
 
+var ACTIONS_CLASS = 'column__actions';
+var OPEN_DIALOG_CLASS = 'js-open-dialog';
+var CLOSE_DIALOG_CLASS = 'js-close-dialog';
+var ACTIONS_OPEN_DIALOG_MOD = 'column__actions_open-dialog'
+
 var addColumnActions = `<div class="column__column-actions">
                             <input class="dialog dialog_column" placeholder="Введите название колонки">
                             <div class="buttons">
@@ -18,9 +23,6 @@ var addColumnActions = `<div class="column__column-actions">
 
 var container = document.querySelector('.container');
 var columns = Array.from(document.querySelectorAll('.column'));
-// var cardActionsContainers = document.querySelectorAll('.column__card-actions');
-//  var addCardButton = column.querySelector('.js-add-card');
-
 var createNewColumn = function () {
     var column = document.createElement('section');
     column.setAttribute('class', 'column');
@@ -29,38 +31,21 @@ var createNewColumn = function () {
     return column;
 };
 
-columns.forEach(function(column) {
-    console.log('1', columns.length);
-    var cards = column.querySelectorAll('.card');
+container.onclick = function(event) {
+    var target = event.target;
+    var isOpenCardDialogBtn = target.classList.contains(OPEN_DIALOG_CLASS);
+    var isCloseCardDialogBtn = target.classList.contains(CLOSE_DIALOG_CLASS);
 
-    if (cards.length === 0) {
-        var openColumnDialogButton = column.querySelector('.js-open-column-dialog');
-        var closeColumnDialogButton = column.querySelector('.js-close-column-dialog');
-
-        openColumnDialogButton.addEventListener('click', function() {
-            openColumnDialogButton.closest('.column__column-actions').classList.add('column__column-actions_open-dialog'); //TODO const class
-            if (columns.length < 4) {
-                container.appendChild(createNewColumn());
-                columns.push(createNewColumn());
-                console.log('2', columns.length);
-            }
-        });
-
-        closeColumnDialogButton.addEventListener('click', function() {
-            closeColumnDialogButton.closest('.column__column-actions').classList.remove('column__column-actions_open-dialog'); //TODO const class
-            container.removeChild(createNewColumn());
-            columns.push(createNewColumn());
-        });
-    } else {
-        var openCardDialogButton = column.querySelector('.js-open-card-dialog');
-        var closeCardDialogButton = column.querySelector('.js-close-card-dialog');
-
-        openCardDialogButton.addEventListener('click', function() {
-            openCardDialogButton.closest('.column__card-actions').classList.add('column__column-actions_open-dialog'); //TODO const class
-        });
-
-        closeCardDialogButton.addEventListener('click', function() {
-            closeCardDialogButton.closest('.column__card-actions').classList.remove('column__column-actions_open-dialog'); //TODO const class
-        });
+    if (isOpenCardDialogBtn) {
+        target.closest('.' + ACTIONS_CLASS).classList.add(ACTIONS_OPEN_DIALOG_MOD); // TODO хрень какая то с классами надо придумать название
     }
-});
+
+    if (isCloseCardDialogBtn || target.closest('.' + CLOSE_DIALOG_CLASS)) {
+        target.closest('.' + ACTIONS_CLASS).classList.remove(ACTIONS_OPEN_DIALOG_MOD);
+    }
+
+    console.log('target', target);
+    console.log('target.closest(CLOSE_DIALOG_CLASS)', target.closest(CLOSE_DIALOG_CLASS));
+};
+
+
