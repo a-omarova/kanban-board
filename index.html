@@ -15,41 +15,25 @@
                 <!-- Column -->
                 <h4 class="column__title">План на месяц</h4>
                 <div class="cards-list">
-                    <p class="card">
-                        Пройти курс по React
-                    </p>
-                    <p class="card">
-                        Отметить день рождения
-                    </p>
-                    <p class="card">
-                        Записаться на курсы английского языка, чтобы уехать жить в Лондон
-                    </p>
-                    <p class="card">
-                        Сделать бекенд своего сайта на node.js
-                    </p>
-                    <p class="card">
-                        Собрать портфолио
-                    </p>
-                    <p class="card">
-                        Написать первую статью в блог
-                    </p>
-                    <p class="card">
-                        Записаться в мотошколу. Хотя немного страшновато, конечно. Друзья и родители против, но очень хочется. Но кого я обманываю, уже 2 года решаюсь на этот шаг 😢 Еще и друзья будут хрустиком называть. В общем, хотя бы подумать над этим.
-                    </p>
-                    <p class="card">
-                        Нет, я серьезный человек, иду в мотошколу. Записываюсь!
-                    </p>
+                    <p class="card">Пройти курс по React</p>
+                    <p class="card">Отметить день рождения</p>
+                    <p class="card">Записаться на курсы английского языка, чтобы уехать жить в Лондон</p>
+                    <p class="card">Сделать бекенд своего сайта на node.js</p>
+                    <p class="card">Собрать портфолио</p>
+                    <p class="card">Написать первую статью в блог</p>
+                    <p class="card">Записаться в мотошколу. Хотя немного страшновато, конечно. Друзья и родители против, но очень хочется. Но кого я обманываю, уже 2 года решаюсь на этот шаг 😢 Еще и друзья будут хрустиком называть. В общем, хотя бы подумать над этим.</p>
+                    <p class="card">Нет, я серьезный человек, иду в мотошколу. Записываюсь!</p>
                 </div>
                 <!-- Column -->
 
                 <!-- Add card -->
-                <div class="column__add-card">
+                <div class="column__card-actions">
                     <textarea class="dialog dialog_card" placeholder="Введите название карточки"></textarea>
-                    <div class="buttons buttons_open-dialog-button">
-                        <svg class="buttons__icon" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="buttons">
+                        <svg class="buttons__icon js-close-card-dialog" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.141 6.641H8.36V.86A.88.88 0 0 0 7.5 0a.88.88 0 0 0-.859.859V6.64H.86A.88.88 0 0 0 0 7.5c0 .458.4.859.859.859H6.64v5.782c0 .458.401.859.859.859a.88.88 0 0 0 .859-.859V8.36h5.782A.88.88 0 0 0 15 7.5a.88.88 0 0 0-.859-.859z" fill="#6B808C"/>
                         </svg>
-                        <button class="open-dialog-button">Добавить еще одну карточку</button>
+                        <button class="open-dialog-button js-open-card-dialog">Добавить еще одну карточку</button>
                         <button class="add-button js-add-card">Добавить карточку</button>
                     </div>
                 </div>
@@ -59,14 +43,14 @@
 
             <section class="column">
                 <!-- Add column -->
-                <div class="column__add-column">
+                <div class="column__column-actions">
                     <input class="dialog dialog_column" placeholder="Введите название колонки">
-                    <div class="buttons buttons_open-dialog-button">
-                        <svg class="buttons__icon" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="buttons">
+                        <svg class="buttons__icon js-close-column-dialog" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.141 6.641H8.36V.86A.88.88 0 0 0 7.5 0a.88.88 0 0 0-.859.859V6.64H.86A.88.88 0 0 0 0 7.5c0 .458.4.859.859.859H6.64v5.782c0 .458.401.859.859.859a.88.88 0 0 0 .859-.859V8.36h5.782A.88.88 0 0 0 15 7.5a.88.88 0 0 0-.859-.859z" fill="#6B808C"/>
                         </svg>
                         <span class="button__icon"></span>
-                        <button class="open-dialog-button">
+                        <button class="open-dialog-button js-open-column-dialog">
                             Добавить еще одну колонку
                         </button>
                         <button class="add-button js-add-column">

@@ -18,6 +18,7 @@
 .column {
     position: relative;
     width: calc((100% - 36px) / 4);
+    min-width: 280px;
     max-height: 100%;
     margin: 0 6px;
     padding: 0;
@@ -52,12 +53,13 @@
     line-height: 19px;
 }
 
-.column__add-card, .column__add-column {
-    padding: 3px 12px;
+.column__card-actions, .column__column-actions {
+    padding: 10px 12px;
     background-color: inherit;
+    cursor: pointer;
 }
 
-.column__add-card {
+.column__card-actions {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -65,6 +67,7 @@
 }
 
 .dialog {
+    display: none;
     background: #FFFFFF;
     box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
     border-radius: 3px;
@@ -72,7 +75,7 @@
     box-sizing: border-box;
     font-family: inherit;
     padding: 8px 12px;
-    display: none;
+    margin-bottom: 12px;
 }
 
 .dialog::placeholder {
@@ -82,6 +85,7 @@
 
 .buttons {
     display: flex;
+    align-items: center;
     position: relative;
 }
 
@@ -92,53 +96,57 @@
     background-color: transparent;
     padding: 0 0 0 23px;
     transition: all 2s ease-in-out;
+    width: auto;
+    height: 27px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .add-button {
     background: #39C071;
     border-radius: 3px;
-    padding: 4px 8px;
+    /*padding: 4px 8px;*/
     font-weight: bold;
     font-size: 13px;
     line-height: 19px;
     color: #FFFFFF;
-    transition: all 2s ease-in-out;
+    transition: all 1s ease-in-out;
     box-sizing: border-box;
     overflow: hidden;
-}
-
-.buttons.buttons_open-dialog-button .open-dialog-button {
-    width: auto;
-    padding-left: 23px;
-}
-
-.buttons.buttons_open-dialog-button .add-button,
-.buttons.buttons_add-button .open-dialog-button {
     width: 0;
+    height: 27px;
     padding: 0;
+    white-space: nowrap;
 }
 
-.buttons.buttons_add-button .add-button {
+.column__card-actions_open-dialog .dialog,
+.column__column-actions_open-dialog .dialog {
+    display: block;
+}
+
+.column__card-actions_open-dialog .add-button,
+.column__column-actions_open-dialog .add-button {
     width: auto;
     padding: 4px 8px;
 }
 
+.column__card-actions_open-dialog .open-dialog-button,
+.column__column-actions_open-dialog .open-dialog-button {
+    width: 0;
+    padding: 0;
+}
+
 .buttons__icon {
     position: absolute;
-    top: 12px;
+    top: 6px;
+    transform: rotate(0deg);
+    left: 0;
     transition: all 2s ease-in-out;
 }
 
-.buttons.buttons_open-dialog-button .buttons__icon {
-    transform: rotate(0deg);
-    left: 0;
-}
-
-.buttons.buttons_add-button .buttons__icon  {
+.column__card-actions_open-dialog .buttons__icon,
+.column__column-actions_open-dialog .buttons__icon {
     transform: rotate(45deg);
     right: 0;
     left: auto;
 }
-
-
-
