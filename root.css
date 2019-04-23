@@ -6,3 +6,13 @@ body {
     padding: 0;
     color: #000000;
 }
+
+textarea, button, input {
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
