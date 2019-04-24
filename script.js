@@ -3,7 +3,10 @@
 var ACTIONS_CLASS = 'column__actions';
 var OPEN_DIALOG_CLASS = 'js-open-dialog';
 var CLOSE_DIALOG_CLASS = 'js-close-dialog';
-var ACTIONS_OPEN_DIALOG_MOD = 'column__actions_open-dialog'
+var ADD_CARD_CLASS = 'js-add-card';
+var CARD_DIALOG = 'dialog_card';
+var CARDS_LIST = 'cards-list';
+var ACTIONS_OPEN_DIALOG_MOD = 'column__actions_open-dialog';
 
 var addColumnActions = `<div class="column__actions column__actions_column">
                             <input class="dialog dialog_column" placeholder="Введите название колонки">
@@ -30,11 +33,20 @@ var createNewColumn = function () {
 
     return column;
 };
+var createNewCard = function (message) {
+    var card = document.createElement('p');
+
+    card.setAttribute('class', 'card');
+    card.innerHTML = message;
+
+    return card;
+};
 
 container.onclick = function(event) {
     var target = event.target;
     var isOpenCardDialogBtn = target.classList.contains(OPEN_DIALOG_CLASS);
     var isCloseCardDialogBtn = target.classList.contains(CLOSE_DIALOG_CLASS) || target.closest('.' + CLOSE_DIALOG_CLASS);
+    var isAddCardBtn = target.classList.contains(ADD_CARD_CLASS);
     var columnLength = document.querySelectorAll('.column').length;
 
     if (isOpenCardDialogBtn) {
@@ -45,9 +57,20 @@ container.onclick = function(event) {
     }
 
     if (isCloseCardDialogBtn) {
+        console.log('columnLength', columnLength);
         target.closest('.' + ACTIONS_CLASS).classList.remove(ACTIONS_OPEN_DIALOG_MOD);
-        if (target.closest('.column__actions_column') && columnLength > 3) {
+        if (target.closest('.column__actions_column') && columnLength >= 2) {
             container.removeChild(target.closest('.column'));
+            console.log('target.closest(\'.column\').previousSibling', target.closest('.column').previousElementSibling);
+        }
+    }
+
+    if (isAddCardBtn) {
+        var cardDialog = target.closest('.' + ACTIONS_CLASS).querySelector('.dialog_card');
+
+        if (cardDialog.value.length !== 0) {
+            target.closest('.column').querySelector('.' + CARDS_LIST).appendChild(createNewCard(cardDialog.value))
+            cardDialog.value = '';
         }
     }
 

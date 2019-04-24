@@ -52,6 +52,7 @@
     border-radius: 3px;
     font-size: 13px;
     line-height: 19px;
+    word-break: break-word;
 }
 
 .column__actions {
@@ -61,7 +62,7 @@
 }
 
 .column__actions_card {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     left: 0;
     right: 0;
@@ -108,7 +109,6 @@
 .add-button {
     background: #39C071;
     border-radius: 3px;
-    /*padding: 4px 8px;*/
     font-weight: bold;
     font-size: 13px;
     line-height: 19px;
@@ -147,7 +147,6 @@
     transition: all 2s ease-in-out;
 }
 
-.column__actions_open-dialog .buttons__icon,
 .column__actions_open-dialog .buttons__icon {
     transform: rotate(45deg);
     right: 0;
