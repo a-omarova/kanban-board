@@ -33,3 +33,26 @@ columns.forEach(function(column) {
         });
     }
 });
+
+var addColumnActions = function (columnLength) {
+    var modifier;
+
+    if (columnLength === 3) {
+        modifier = 'column__actions_open-dialog';
+    } else {
+        modifier = '';
+    }
+
+    console.log('columnLength', columnLength)
+
+    return '<div class="column__actions column__actions_column ' + modifier + '">' +
+                '<input class="dialog dialog_column" placeholder="Введите название колонки">' + 
+                '<div class="buttons">' +
+                    '<svg class="buttons__icon js-close-dialog" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                        '<path fill-rule="evenodd" clip-rule="evenodd" d="M14.141 6.641H8.36V.86A.88.88 0 0 0 7.5 0a.88.88 0 0 0-.859.859V6.64H.86A.88.88 0 0 0 0 7.5c0 .458.4.859.859.859H6.64v5.782c0 .458.401.859.859.859a.88.88 0 0 0 .859-.859V8.36h5.782A.88.88 0 0 0 15 7.5a.88.88 0 0 0-.859-.859z" fill="#6B808C"/>' +
+                    '</svg>' +
+                    '<button class="open-dialog-button js-open-dialog">Добавить еще одну колонку</button>' +
+                    '<button class="add-button js-add-column">Добавить колонку</button>' +
+                '</div>' +
+            '</div>'
+};

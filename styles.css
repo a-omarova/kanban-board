@@ -101,6 +101,8 @@
     height: 27px;
     overflow: hidden;
     white-space: nowrap;
+    position: relative;
+    z-index: 10;
 }
 
 .add-button {
