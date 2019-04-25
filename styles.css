@@ -39,12 +39,18 @@
     flex: 0 0 27px;
 }
 
-.cards-list {
+.cards {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     padding: 0 12px;
     overflow-y: auto;
+}
+
+.cards__list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .card {
@@ -59,7 +65,7 @@
 }
 
 .column__actions {
-    padding: 10px 12px;
+    padding: 10px 0;
     background-color: inherit;
     cursor: pointer;
     box-sizing: border-box;
@@ -67,14 +73,13 @@
     flex: 0 0 47px;
 }
 
-.column__actions_open-dialog {
-    /* flex: 0 0 107px; */
+.column__actions_column {
+    padding: 10px 12px;
 }
 
 .column__input, .column__textarea {
     height: 0;
     overflow: hidden;
-    transition: all 1s ease-in-out;
 }
 
 .dialog {
@@ -106,7 +111,6 @@
     color: #6B808C;
     background-color: transparent;
     padding: 0 0 0 23px;
-    transition: all 1s ease-in-out;
     height: 27px;
     overflow: hidden;
     white-space: nowrap;
@@ -123,7 +127,6 @@
     font-size: 13px;
     line-height: 19px;
     color: #FFFFFF;
-    transition: all 1s ease-in-out;
     box-sizing: border-box;
     overflow: hidden;
     width: 0;
@@ -168,19 +171,19 @@
 
 /* стили для скролла */
 
-.cards-list::-webkit-scrollbar-track
+.cards::-webkit-scrollbar-track
 {
 	border-radius: 3px;
 	background-color: #F5F5F5;
 }
 
-.cards-list::-webkit-scrollbar
+.cards::-webkit-scrollbar
 {
 	width: 6px;
 	background-color: #F5F5F5;
 }
 
-.cards-list::-webkit-scrollbar-thumb
+.cards::-webkit-scrollbar-thumb
 {
 	border-radius: 3px;
 	background-color: #6B808C;
