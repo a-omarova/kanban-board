@@ -43,10 +43,8 @@ var addColumnActions = function (columnLength) {
         modifier = '';
     }
 
-    console.log('columnLength', columnLength)
-
     return '<div class="column__actions column__actions_column ' + modifier + '">' +
-                '<input class="dialog dialog_column" placeholder="Введите название колонки">' + 
+                '<input class="dialog dialog_column" placeholder="Введите название колонки">' +
                 '<div class="buttons">' +
                     '<svg class="buttons__icon js-close-dialog" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">' +
                         '<path fill-rule="evenodd" clip-rule="evenodd" d="M14.141 6.641H8.36V.86A.88.88 0 0 0 7.5 0a.88.88 0 0 0-.859.859V6.64H.86A.88.88 0 0 0 0 7.5c0 .458.4.859.859.859H6.64v5.782c0 .458.401.859.859.859a.88.88 0 0 0 .859-.859V8.36h5.782A.88.88 0 0 0 15 7.5a.88.88 0 0 0-.859-.859z" fill="#6B808C"/>' +
@@ -56,3 +54,57 @@ var addColumnActions = function (columnLength) {
                 '</div>' +
             '</div>'
 };
+
+cardsList.forEach(function (list) {
+    list.addEventListener('mousedown', function (event) {
+        event.preventDefault();
+        var target = event.target;
+        var isCard = target.classList.contains(CARD_CLASS);
+
+        if (isCard) {
+            console.log('target', target);
+
+            var startCoords = {
+                x: event.clientX,
+                y: event.clientY
+            };
+
+            var onMouseMove = function (moveEvt) {
+                moveEvt.preventDefault();
+
+                var shift = {
+                    x: startCoords.x - moveEvt.clientX,
+                    y: startCoords.y - moveEvt.clientY
+                };
+
+                startCoords = {
+                    x: moveEvt.clientX,
+                    y: moveEvt.clientY
+                };
+
+                var cloneCard = target.cloneNode(true);
+                cloneCard.classList.add('card_ghost');
+                target.closest('.' + CARDS_LIST).insertBefore(cloneCard, target.nextSibling);
+
+                target.style.top = (target.offsetTop - shift.y) + 'px';
+                target.style.left = (target.offsetLeft - shift.x) + 'px';
+            };
+
+            var onMouseUp = function (upEvt) {
+                upEvt.preventDefault();
+
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            };
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+
+        }
+
+
+
+    });
+});
+
+
