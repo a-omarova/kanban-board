@@ -98,6 +98,7 @@ setupDragula(cardsLists);
 container.onclick = function(event) {
     var target = event.target;
     var isOpenDialogBtn = target.classList.contains(OPEN_DIALOG_CLASS);
+    var isOpenCardDialogBtn = target.closest('.' + CARD_ACTIONS_CLASS) || target.classList.contains(ADD_CARD_CLASS);;
     var isCloseCardDialogBtn = target.classList.contains(CLOSE_DIALOG_CLASS) || target.closest('.' + CLOSE_DIALOG_CLASS);
     var isAddColumnBtn = target.classList.contains(ADD_COLUMN_TITLE_CLASS);
     var isAddCardBtn = target.classList.contains(ADD_CARD_CLASS);
@@ -109,17 +110,6 @@ container.onclick = function(event) {
         if (target.closest('.' + COLUMN_ACTIONS_CLASS) && columnsCounter < 4) {
             container.appendChild(createNewColumn());
             columnsCounter++;
-        }
-    }
-
-    if (target.closest('.' + CARD_ACTIONS_CLASS).querySelector('.' + OPEN_DIALOG_CLASS)) {
-        var closestColumn = target.closest('.' + COLUMN_CLASS);
-        var cardsListHeight = closestColumn.querySelector('.' + COLUMN_CARDS_LIST).offsetHeight;
-        var columnTitleHeight = closestColumn.querySelector('.' + COLUMN_TITLE_CLASS).offsetHeight;
-        var columnHeight = closestColumn.offsetHeight - columnTitleHeight;
-
-        if (cardsListHeight > columnHeight) {
-            target.closest('.' + COLUMN_CONTENT_CLASS).scrollTop = target.closest('.' + COLUMN_CONTENT_CLASS).scrollHeight;
         }
     }
 
@@ -140,7 +130,8 @@ container.onclick = function(event) {
         var cardDialog = target.closest('.' + ACTIONS_CLASS).querySelector('.' + CARD_DIALOG_CLASS);
 
         if (cardDialog.value.length !== 0) {
-            target.closest('.' + COLUMN_CLASS).querySelector('.' + COLUMN_CARDS_LIST).appendChild(createNewCard(cardDialog.value));
+            var message = cardDialog.value.replace(/\n\r?/g, '<br />');
+            target.closest('.' + COLUMN_CLASS).querySelector('.' + COLUMN_CARDS_LIST).appendChild(createNewCard(message));
             cardDialog.value = '';
         }
     }
@@ -156,11 +147,22 @@ container.onclick = function(event) {
             column.insertBefore(createColumnTitle(columnDialog.value), columnActions);
             column.removeChild(columnActions);
             column.appendChild(createNewCardsList());
-            console.log('column', [column.querySelector('.' + COLUMN_CARDS_LIST)]);
+
             cardsLists = cardsLists.concat([column.querySelector('.' + COLUMN_CARDS_LIST)]);
 
             // init again after added new column
             setupDragula(cardsLists);
+        }
+    }
+
+    if (isOpenCardDialogBtn) {
+        var closestColumn = target.closest('.' + COLUMN_CLASS);
+        var cardsListHeight = closestColumn.querySelector('.' + COLUMN_CARDS_LIST).offsetHeight;
+        var columnTitleHeight = closestColumn.querySelector('.' + COLUMN_TITLE_CLASS).offsetHeight;
+        var columnHeight = closestColumn.offsetHeight - columnTitleHeight;
+
+        if (cardsListHeight > columnHeight) {
+            target.closest('.' + COLUMN_CONTENT_CLASS).scrollTop = target.closest('.' + COLUMN_CONTENT_CLASS).scrollHeight;
         }
     }
 };
