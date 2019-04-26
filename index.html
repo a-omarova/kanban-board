@@ -12,7 +12,6 @@
     <main class="kanban">
         <div class="container">
             <section class="column">
-                <!-- Column -->
                 <h4 class="column__title">План на месяц</h4>
                 <div class="column__content">
                     <div class="column__card-list">
@@ -31,7 +30,28 @@
                         <p class="card">Записаться в мотошколу. Хотя немного страшновато, конечно. Друзья и родители против, но очень хочется. Но кого я обманываю, уже 2 года решаюсь на этот шаг 😢 Еще и друзья будут хрустиком называть. В общем, хотя бы подумать над этим.</p>
                         <p class="card">Нет, я серьезный человек, иду в мотошколу. Записываюсь!</p>
                     </div>
-
+                    <div class="column__actions column__actions_card">
+                        <div class="column__textarea">
+                            <textarea class="dialog dialog_card" placeholder="Введите название карточки"></textarea>
+                        </div>
+                        <div class="buttons">
+                            <svg class="buttons__icon js-close-dialog" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.141 6.641H8.36V.86A.88.88 0 0 0 7.5 0a.88.88 0 0 0-.859.859V6.64H.86A.88.88 0 0 0 0 7.5c0 .458.4.859.859.859H6.64v5.782c0 .458.401.859.859.859a.88.88 0 0 0 .859-.859V8.36h5.782A.88.88 0 0 0 15 7.5a.88.88 0 0 0-.859-.859z" fill="#6B808C"/>
+                            </svg>
+                            <button class="open-dialog-button js-open-dialog">Добавить еще одну карточку</button>
+                            <button class="add-button js-add-card">Добавить карточку</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="column">
+                <h4 class="column__title">План на месяц</h4>
+                <div class="column__content">
+                    <div class="column__card-list">
+                        <p class="card">Записаться на курс по React</p>
+                        <p class="card">Забронировать тир на субботу</p>
+                        <p class="card">Накидать тем для статей в блог</p>
+                    </div>
                     <div class="column__actions column__actions_card">
                         <div class="column__textarea">
                             <textarea class="dialog dialog_card" placeholder="Введите название карточки"></textarea>
@@ -70,6 +90,5 @@
 
     <script src='scripts/dragula/dragula.min.js'></script>
     <script src="scripts/script.js"></script>
-
 </body>
 </html>
