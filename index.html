@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./root.css">
-    <link rel="stylesheet" href="./styles.css">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
+    <link rel="stylesheet" href="styles/root.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <main class="kanban">
@@ -15,8 +14,8 @@
             <section class="column">
                 <!-- Column -->
                 <h4 class="column__title">План на месяц</h4>
-                <div class="cards">
-                    <div class="cards__list">
+                <div class="column__content">
+                    <div class="column__card-list">
                         <p class="card">Пройти курс по React</p>
                         <p class="card">Отметить день рождения</p>
                         <p class="card">Записаться на курсы английского языка, чтобы уехать жить в Лондон</p>
@@ -46,16 +45,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-
-                <!-- Add card -->
-
-                <!-- Add card -->
             </section>
-
-
             <section class="column">
-                <!-- Add column -->
                 <div class="column__actions column__actions_column">
                     <div class="column__input">
                         <input class="dialog dialog_column" placeholder="Введите название колонки">
@@ -73,12 +64,11 @@
                         </button>
                     </div>
                 </div>
-                <!-- Add column -->
             </section>
         </div>
     </main>
 
-
+    <script src='scripts/dragula/dragula.min.js'></script>
     <script src="scripts/script.js"></script>
 
 </body>

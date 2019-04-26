@@ -1,32 +1,51 @@
-@import './dragula/dragula.min.css';
+:root {
+    /* text */
+    --font-size: 13px;
+    --line-height: 19px;
+
+    /* colors */
+    --color-dark-text: #6B808C;
+    --color-light-text: #B8B9BB;
+    --color-background: #DFE3E6;
+    --color-dark-background: #C9D2D9;
+
+    --color-light-grey: #F5F5F5;
+    --color-dark-grey: #6B808C;
+    --color-white: #FFFFFF;
+    --color-green: #39C071;
+}
+
+* {
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+}
 
 .kanban {
     padding: 20px;
     width: 100%;
     height: 100vh;
     box-sizing: border-box;
-    background: url('img/background.png') no-repeat;
+    background: url('../img/background.jpg') no-repeat;
     background-size: cover;
 }
 
 .container {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
     margin: 0 -6px;
-    width: 100%;
     height: 100%;
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    width: calc((100% - 36px) / 4);
-    min-width: 280px;
+    flex: 0 0 calc(25% - 12px);
     max-height: 100%;
     min-height: 47px;
     margin: 0 6px;
     padding: 0;
-    background-color: #DFE3E6;
+    background-color: var(--color-background);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -39,7 +58,7 @@
     margin: 0;
 }
 
-.cards {
+.column__content {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -47,7 +66,7 @@
     overflow-y: auto;
 }
 
-.cards__list {
+.column__cards-list {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -57,7 +76,7 @@
 .card {
     margin: 6px 0;
     padding: 8px 12px;
-    background: #FFFFFF;
+    background: var(--color-white);
     box-shadow: 0 1px 4px rgba(9, 45, 66, 0.25);
     border-radius: 3px;
     font-size: 13px;
@@ -84,7 +103,7 @@
 }
 
 .dialog {
-    background: #FFFFFF;
+    background: var(--color-white);
     box-shadow: 0 1px 4px rgba(9, 45, 66, 0.25);
     border-radius: 3px;
     width: 100%;
@@ -100,7 +119,7 @@
 }
 
 .dialog::placeholder {
-    color: #B8B9BB;
+    color: var(--color-light-text);
     font-family: inherit;
 }
 
@@ -113,7 +132,7 @@
 .open-dialog-button {
     font-size: 13px;
     line-height: 19px;
-    color: #6B808C;
+    color: var(--color-dark-text);
     background-color: transparent;
     padding: 0 0 0 23px;
     height: 27px;
@@ -126,12 +145,12 @@
 }
 
 .add-button {
-    background: #39C071;
+    background: var(--color-green);
     border-radius: 3px;
     font-weight: bold;
     font-size: 13px;
     line-height: 19px;
-    color: #FFFFFF;
+    color: var(--color-white);
     box-sizing: border-box;
     overflow: hidden;
     width: 0;
@@ -173,31 +192,29 @@
     left: auto;
 }
 
-
 /* стили для скролла */
 
-.cards::-webkit-scrollbar-track {
+.column__content::-webkit-scrollbar-track {
 	border-radius: 2px;
-	background-color: #F5F5F5;
+	background-color: var(--color-light-grey);
 }
 
-.cards::-webkit-scrollbar {
+.column__content::-webkit-scrollbar {
 	width: 4px;
-	background-color: #F5F5F5;
+	background-color: var(--color-light-grey);
 }
 
-.cards::-webkit-scrollbar-thumb {
+.column__content::-webkit-scrollbar-thumb {
 	border-radius: 2px;
-	background-color: #6B808C;
+	background-color: var(--color-dark-grey);
 }
-
 
 /* стили для dragula */
 
 .card.gu-transit {
     opacity: 1;
     color: transparent;
-    background-color: #C9D2D9;
+    background-color: var(--color-dark-background);
     box-shadow: none;
 }
 
@@ -213,4 +230,57 @@
 
 .card.gu-mirror.card_direction_right {
     transform: rotate(5deg);
+}
+
+@media (max-width: 1200px) {
+    .container {
+        align-content: flex-start;
+        justify-content: space-between;
+    }
+
+    .column {
+        flex: 1;
+        max-height: calc(50% - 6px);
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        align-content: flex-start;
+        width: auto;
+    }
+
+    .column {
+        flex: 0 0 calc(50% - 12px);
+        max-height: calc(50% - 6px);
+        margin-bottom: 6px;
+    }
+
+    .column:nth-child(1), .column:nth-child(2) {
+        margin-bottom: 6px;
+    }
+
+    .column:nth-child(3), .column:nth-child(4) {
+        margin-top: 6px;
+    }
+}
+
+@media (max-width: 400px) {
+    .kanban {
+        height: 100%;
+    }
+
+    .column {
+        flex: 0 0 calc(100% - 12px);
+        height: 100%;
+    }
+
+    .column:nth-child(1),
+    .column:nth-child(2),
+    .column:nth-child(3),
+    .column:nth-child(4) {
+        margin-top: 0;
+        margin-bottom: 24px;
+    }
 }

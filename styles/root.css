@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&subset=cyrillic');
+@import '../scripts/dragula/dragula.min.css';
+@import 'styles.css';
 
 body {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;

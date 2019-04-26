@@ -6,13 +6,21 @@ var CLOSE_DIALOG_CLASS = 'js-close-dialog';
 var ADD_CARD_CLASS = 'js-add-card';
 var ADD_COLUMN_TITLE_CLASS = 'js-add-column-title';
 var CARD_CLASS = 'card';
+var COLUMN_CONTENT_CLASS = 'column__content';
 var COLUMN_CLASS = 'column';
-var CARDS_LIST = 'cards__list';
+var COLUMN_CARDS_LIST = 'column__card-list';
 var ACTIONS_OPEN_DIALOG_MOD = 'column__actions_open-dialog';
 var COLUMN_ACTIONS_CLASS = 'column__actions_column';
 var CARD_DIALOG_CLASS = 'dialog_card';
 var COLUMN_DIALOG_CLASS = 'dialog_column';
 var COLUMN_TITLE_CLASS = 'column__title';
+
+var container = document.querySelector('.container');
+var columns = document.querySelectorAll('.' + COLUMN_CLASS);
+var columnsCounter = columns.length;
+var cardsLists = Array.from(document.querySelectorAll('.' + COLUMN_CARDS_LIST));
+var drake =  window.dragula();
+
 
 var addColumnActions = `<div class="column__actions column__actions_column">
                             <div class="column__input">
@@ -39,11 +47,6 @@ var addCardActions = `<div class="column__actions column__actions_card">
                         </div>
                     </div>`;
 
-var container = document.querySelector('.container');
-var columns = document.querySelectorAll('.' + COLUMN_CLASS);
-var columnsCounter = columns.length;
-var cardsList = document.querySelectorAll('.' + CARDS_LIST);
-
 var createNewColumn = function () {
     var column = document.createElement('section');
 
@@ -55,7 +58,7 @@ var createNewColumn = function () {
 var createNewCard = function (message) {
     var card = document.createElement('p');
 
-    card.setAttribute('class', 'card');
+    card.setAttribute('class', CARD_CLASS);
     card.innerHTML = message;
 
     return card;
@@ -73,8 +76,8 @@ var createColumnTitle = function (name) {
 var createNewCardsList = function () {
     var listContainer = document.createElement('div');
     var list = document.createElement('div');
-    listContainer.setAttribute('class', 'cards');
-    list.setAttribute('class', 'cards__list');
+    listContainer.setAttribute('class', COLUMN_CONTENT_CLASS);
+    list.setAttribute('class', COLUMN_CARDS_LIST);
 
     listContainer.appendChild(list);
     listContainer.innerHTML += addCardActions;
@@ -82,16 +85,22 @@ var createNewCardsList = function () {
     return listContainer;
 };
 
-container.onclick = function(event) {
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1")
+var setupDragula = function (containers){
+    drake.destroy();
+    drake = dragula(containers);
+};
 
+// init dragula
+
+setupDragula(cardsLists);
+
+container.onclick = function(event) {
     var target = event.target;
     var isOpenCardDialogBtn = target.classList.contains(OPEN_DIALOG_CLASS);
     var isCloseCardDialogBtn = target.classList.contains(CLOSE_DIALOG_CLASS) || target.closest('.' + CLOSE_DIALOG_CLASS);
     var isAddColumnBtn = target.classList.contains(ADD_COLUMN_TITLE_CLASS);
     var isAddCardBtn = target.classList.contains(ADD_CARD_CLASS);
     var isCardBtn = target.classList.contains(CARD_CLASS);
-    cardsList = document.querySelectorAll('.' + CARDS_LIST);
 
     // create new column
 
@@ -121,7 +130,7 @@ container.onclick = function(event) {
         var cardDialog = target.closest('.' + ACTIONS_CLASS).querySelector('.' + CARD_DIALOG_CLASS);
 
         if (cardDialog.value.length !== 0) {
-            target.closest('.' + COLUMN_CLASS).querySelector('.' + CARDS_LIST).appendChild(createNewCard(cardDialog.value));
+            target.closest('.' + COLUMN_CLASS).querySelector('.' + COLUMN_CARDS_LIST).appendChild(createNewCard(cardDialog.value));
             cardDialog.value = '';
             columns = document.querySelectorAll('.' + COLUMN_CLASS);
         }
@@ -138,32 +147,11 @@ container.onclick = function(event) {
             column.insertBefore(createColumnTitle(columnDialog.value), columnActions);
             column.removeChild(columnActions);
             column.appendChild(createNewCardsList());
-            columnDialog.value = '';
+            console.log('column', [column.querySelector('.' + COLUMN_CARDS_LIST)]);
+            cardsLists = cardsLists.concat([column.querySelector('.' + COLUMN_CARDS_LIST)]);
+
+            // init again after added new column
+            setupDragula(cardsLists);
         }
     }
-
-    if (isCardBtn) {
-
-        console.log('!!!!', cardsList);
-        console.log('!!isCardBtn!!', isCardBtn);
-        dragula(Array.from(cardsList), {
-            copy: false,                       // elements are moved by default, not copied
-            mirrorContainer: document.body,    // set the element that gets mirror elements appended
-            ignoreInputTextSelection: true     // allows users to select input text, see details below
-        });
-
-        console.log('!!isCardBtn!!', document.body.mirrorContainer);
-    }
 };
-
-console.log('!!!!', cardsList);
-
-dragula(Array.from(cardsList), {
-    copy: false
-});
-
-
-
-// drag'n'drop
-
-
