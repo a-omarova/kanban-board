@@ -11,6 +11,7 @@ var COLUMN_CLASS = 'column';
 var COLUMN_CARDS_LIST = 'column__card-list';
 var ACTIONS_OPEN_DIALOG_MOD = 'column__actions_open-dialog';
 var COLUMN_ACTIONS_CLASS = 'column__actions_column';
+var CARD_ACTIONS_CLASS = 'column__actions_card';
 var CARD_DIALOG_CLASS = 'dialog_card';
 var COLUMN_DIALOG_CLASS = 'dialog_column';
 var COLUMN_TITLE_CLASS = 'column__title';
@@ -96,20 +97,29 @@ setupDragula(cardsLists);
 
 container.onclick = function(event) {
     var target = event.target;
-    var isOpenCardDialogBtn = target.classList.contains(OPEN_DIALOG_CLASS);
+    var isOpenDialogBtn = target.classList.contains(OPEN_DIALOG_CLASS);
     var isCloseCardDialogBtn = target.classList.contains(CLOSE_DIALOG_CLASS) || target.closest('.' + CLOSE_DIALOG_CLASS);
     var isAddColumnBtn = target.classList.contains(ADD_COLUMN_TITLE_CLASS);
     var isAddCardBtn = target.classList.contains(ADD_CARD_CLASS);
-    var isCardBtn = target.classList.contains(CARD_CLASS);
 
-    // create new column
+    // open dialog and create new column
 
-    if (isOpenCardDialogBtn) {
+    if (isOpenDialogBtn) {
         target.closest('.' + ACTIONS_CLASS).classList.add(ACTIONS_OPEN_DIALOG_MOD);
         if (target.closest('.' + COLUMN_ACTIONS_CLASS) && columnsCounter < 4) {
             container.appendChild(createNewColumn());
             columnsCounter++;
-            columns = document.querySelectorAll('.' + COLUMN_CLASS);
+        }
+    }
+
+    if (target.closest('.' + CARD_ACTIONS_CLASS).querySelector('.' + OPEN_DIALOG_CLASS)) {
+        var closestColumn = target.closest('.' + COLUMN_CLASS);
+        var cardsListHeight = closestColumn.querySelector('.' + COLUMN_CARDS_LIST).offsetHeight;
+        var columnTitleHeight = closestColumn.querySelector('.' + COLUMN_TITLE_CLASS).offsetHeight;
+        var columnHeight = closestColumn.offsetHeight - columnTitleHeight;
+
+        if (cardsListHeight > columnHeight) {
+            target.closest('.' + COLUMN_CONTENT_CLASS).scrollTop = target.closest('.' + COLUMN_CONTENT_CLASS).scrollHeight;
         }
     }
 
@@ -117,10 +127,10 @@ container.onclick = function(event) {
 
     if (isCloseCardDialogBtn) {
         target.closest('.' + ACTIONS_CLASS).classList.remove(ACTIONS_OPEN_DIALOG_MOD);
+
         if (target.closest('.' + COLUMN_ACTIONS_CLASS) && columnsCounter > 2 ) {
             container.removeChild(target.closest('.' + COLUMN_CLASS));
             columnsCounter--;
-            columns = document.querySelectorAll('.' + COLUMN_CLASS);
         }
     }
 
@@ -132,7 +142,6 @@ container.onclick = function(event) {
         if (cardDialog.value.length !== 0) {
             target.closest('.' + COLUMN_CLASS).querySelector('.' + COLUMN_CARDS_LIST).appendChild(createNewCard(cardDialog.value));
             cardDialog.value = '';
-            columns = document.querySelectorAll('.' + COLUMN_CLASS);
         }
     }
 
