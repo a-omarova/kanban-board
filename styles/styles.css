@@ -74,6 +74,8 @@
     align-items: stretch;
     margin: -6px 0;
     padding-top: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .card {
@@ -85,6 +87,10 @@
     word-break: break-word;
     transform: rotate(0);
     transition: transform 1s ease-in-out;
+}
+
+.card:hover {
+    cursor: grab;
 }
 
 .column__actions {
@@ -221,6 +227,7 @@
     opacity: 1;
     box-sizing: border-box;
     transform: rotate(5deg);
+    cursor: grabbing;
 }
 
 @media (max-width: 1200px) {
