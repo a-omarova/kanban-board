@@ -157,11 +157,12 @@ container.onclick = function(event) {
 
     if (isOpenCardDialogBtn) {
         var closestColumn = target.closest('.' + COLUMN_CLASS);
-        var cardsListHeight = closestColumn.querySelector('.' + COLUMN_CARDS_LIST).offsetHeight;
+        var columnContentHeight = closestColumn.querySelector('.' + COLUMN_CONTENT_CLASS).offsetHeight;
         var columnTitleHeight = closestColumn.querySelector('.' + COLUMN_TITLE_CLASS).offsetHeight;
-        var columnHeight = closestColumn.offsetHeight - columnTitleHeight;
+        var cardActionHeight = closestColumn.querySelector('.' + CARD_ACTIONS_CLASS).offsetHeight;
+        var columnHeight = closestColumn.offsetHeight - columnTitleHeight - cardActionHeight;
 
-        if (cardsListHeight > columnHeight) {
+        if (columnContentHeight > columnHeight) {
             target.closest('.' + COLUMN_CONTENT_CLASS).scrollTop = target.closest('.' + COLUMN_CONTENT_CLASS).scrollHeight;
         }
     }
