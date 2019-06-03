@@ -56,6 +56,7 @@ var createNewColumn = function () {
 
     return column;
 };
+
 var createNewCard = function (message) {
     var card = document.createElement('p');
 
@@ -107,7 +108,7 @@ container.onclick = function(event) {
 
     if (isOpenDialogBtn) {
         target.closest('.' + ACTIONS_CLASS).classList.add(ACTIONS_OPEN_DIALOG_MOD);
-        if (target.closest('.' + COLUMN_ACTIONS_CLASS) && columnsCounter < 4) {
+        if (target.closest('.' + COLUMN_ACTIONS_CLASS)) {
             container.appendChild(createNewColumn());
             columnsCounter++;
         }
