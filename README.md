@@ -1,3 +1,3 @@
 # kanban
 
-[Link to demo](https://a-omarova.github.io/para-para-pam/)
+[Link to demo](https://a-omarova.github.io/kanban-board/)
